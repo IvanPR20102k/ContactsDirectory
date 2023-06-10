@@ -1,0 +1,44 @@
+﻿<Window x:Class="ContactsDirectory.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ContactsDirectory"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1920">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="btnImport" Content="Импорт" Margin="10,10,10,10" Click="btnImport_Click"/>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Orientation="Vertical">
+            <TextBlock Text="Сортировать по:" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <ComboBox Name="cmbSorting" SelectedIndex="0" HorizontalAlignment="Stretch" Margin="5,5,5,5" ItemsSource="{Binding SortingList}" SelectionChanged="cmbSorting_SelectionChanged"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Orientation="Vertical">
+            <TextBlock Text="Поиск" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <TextBox Name="txtSearch" SelectionChanged="txtSearch_SelectionChanged" Margin="5,5,5,5"/>
+        </StackPanel>
+
+        <ListView Name="LViewInstitution" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="5,5,5,5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="600">Название</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Address}" Width="600">Адрес</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Email}" Width="200">Email</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Website}" Width="200">Сайт</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Phone}" Width="200">Телефон</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
